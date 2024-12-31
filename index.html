@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="custom.css">
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-all duration-300">
+
+    <!-- Navbar Section -->
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <a class="text-white text-2xl font-bold" href="#">My Portfolio</a>
+                <button class="text-white md:hidden block" id="navbar-toggler">
+                    <span class="navbar-toggler-icon">&#9776;</span>
+                </button>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#about" class="text-white hover:text-blue-400">About</a>
+                    <a href="#projects" class="text-white hover:text-blue-400">Projects</a>
+                    <a href="#contact" class="text-white hover:text-blue-400">Contact</a>
+                    <button id="darkModeToggle" class="text-white bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg">Dark Mode</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gray-200 py-16 text-center">
+        <div class="container mx-auto">
+            <h1 class="text-4xl font-bold text-gray-800">Hello, I'm <span class="text-blue-500">Ival Permana</span></h1>
+            <p class="text-xl mt-4">A passionate [Your Profession/Skill]</p>
+            <a href="#projects" class="bg-blue-500 text-white px-6 py-2 rounded-lg mt-6 inline-block hover:bg-blue-400">View My Work</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">About Me</h2>
+            <p class="text-xl">Here you can write a brief introduction about yourself, your background, and what you do.</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-gray-100">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/150" alt="Project 1" class="w-full h-48 object-cover rounded-t-lg">
+                    <h5 class="text-xl font-semibold mt-4">Project 1</h5>
+                    <p class="text-gray-600 mt-2">Short description of the project.</p>
+                    <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-blue-400">View Details</a>
+                </div>
+                <div class="card bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/150" alt="Project 2" class="w-full h-48 object-cover rounded-t-lg">
+                    <h5 class="text-xl font-semibold mt-4">Project 2</h5>
+                    <p class="text-gray-600 mt-2">Short description of the project.</p>
+                    <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-blue-400">View Details</a>
+                </div>
+                <div class="card bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/150" alt="Project 3" class="w-full h-48 object-cover rounded-t-lg">
+                    <h5 class="text-xl font-semibold mt-4">Project 3</h5>
+                    <p class="text-gray-600 mt-2">Short description of the project.</p>
+                    <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 inline-block hover:bg-blue-400">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Contact Me</h2>
+            <form class="max-w-lg mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="block text-left text-lg font-semibold">Name</label>
+                    <input type="text" id="name" class="w-full p-3 rounded-lg border border-gray-300 mt-2" placeholder="Your Name">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-left text-lg font-semibold">Email</label>
+                    <input type="email" id="email" class="w-full p-3 rounded-lg border border-gray-300 mt-2" placeholder="Your Email">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-left text-lg font-semibold">Message</label>
+                    <textarea id="message" rows="4" class="w-full p-3 rounded-lg border border-gray-300 mt-2" placeholder="Your Message"></textarea>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white w-full py-3 rounded-lg hover:bg-blue-400">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-3 bg-gray-800 text-white text-center">
+        <p>&copy; 2024 Your Name. All Rights Reserved.</p>
+    </footer>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // script.js
+        
+        $(document).ready(function () {
+            // Pengguliran halus untuk tautan navigasi
+            $('a.nav-link').on('click', function (event) {
+                event.preventDefault(); // Mencegah aksi default saat klik
+                const target = $(this.getAttribute('href')); // Mendapatkan elemen yang dituju
+                if (target.length) {
+                    // Animasi scroll ke target dengan offset untuk navbar
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 70 // Menyesuaikan untuk tinggi navbar tetap
+                    }, 1000);
+                }
+            });
+        
+            $(document).ready(function () {
+    // Mengaktifkan dan menonaktifkan dark mode
+    const darkModeToggle = $('#darkModeToggle');
+    
+    // Mengecek apakah dark mode sudah diaktifkan sebelumnya
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+        $('body').addClass('dark-mode');
+        darkModeToggle.text('Light Mode');
+    }
+
+    darkModeToggle.on('click', function () {
+        $('body').toggleClass('dark-mode');
+        
+        // Menyimpan preferensi mode pengguna
+        if ($('body').hasClass('dark-mode')) {
+            localStorage.setItem('dark-mode', 'enabled');
+            $(this).text('Light Mode');
+        } else {
+            localStorage.removeItem('dark-mode');
+            $(this).text('Dark Mode');
+        }
+    });
+});
+
+
+        
+            // Animasi fade in dan fade out berulang pada <h1>
+            function fadeInOut() {
+                $('h1').fadeIn(1000).delay(1000).fadeOut(1000, fadeInOut); // Fade in, tunggu 1 detik, kemudian fade out, ulangi
+            }
+        
+            // Memulai animasi fade in dan fade out
+            fadeInOut();
+        });
+    </script>
+</body>
+</html>
