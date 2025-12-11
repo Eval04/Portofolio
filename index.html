@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
     <style>
         @keyframes fadeInUp {
             from {
@@ -183,244 +183,223 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
-    <nav class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-10 relative">
-        <div class="font-bold text-2xl">Portfolio</div>
-        <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+<body>
+    <nav>
+        <div class="nav-brand">Portfolio</div>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
         </button>
-        <div class="nav-links space-x-4">
-            <a href="#about" class="text-lg font-semibold hover:text-blue-500">About</a>
-            <a href="#skills" class="text-lg font-semibold hover:text-blue-500">Skills</a>
-            <a href="#projects" class="text-lg font-semibold hover:text-blue-500">Projects</a>
-            <a href="#experience" class="text-lg font-semibold hover:text-blue-500">Experience</a>
-            <a href="#contact" class="text-lg font-semibold hover:text-blue-500">Contact</a>
-        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
 
-    <header class="text-center py-16 bg-gray-200 overflow-hidden">
+    <header>
         <div class="hero-content">
-            <h1 class="text-5xl font-bold mb-4 fade-in-up">
-                Hi, I'm Ival Permana
+            <h1 class="fade-in-up">
+                Hi, I'm <span>Ival Permana</span>
             </h1>
-            <p class="text-lg text-gray-600 mb-6 fade-in-up">
-                A Student In Universitas Negeri Makassar
+            <p class="fade-in-up">
+                A Computer Engineering Student at Universitas Negeri Makassar
             </p>
-            <a href="#about" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
-                Discover More
-            </a>
+            <a href="#about" class="hero-cta">Discover More</a>
         </div>
     </header>
 
-    <section id="about" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">About Me</h2>
-        <p class="text-gray-700 text-center">
-            I'm Ival Permana, Seorang Mahasiswa Teknik Komputer Dari Universitas Negeri Makassar Dan Saat Ini Masih Menjalani Program Studi Saya
-        </p>
+    <main>
+    <section id="about">
+        <div class="container">
+            <div class="section-card reveal">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-text">
+                    I'm Ival Permana, a Computer Engineering student at Universitas Negeri Makassar. I'm passionate about web development and software engineering, focusing on creating modern, responsive applications with clean code and intuitive user experiences.
+                </p>
+            </div>
+        </div>
     </section>
 
-    <section id="skills" class="container mx-auto mt-8 text-center reveal">
-        <h2 class="text-3xl font-bold mb-4">Skills</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 justify-center">
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">HTML & CSS</h3>
-                <div class="skill-progress" data-progress="90">
-                    <div class="skill-progress-fill"></div>
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid reveal">
+                <div class="skill-card">
+                    <h3 class="skill-name">HTML & CSS</h3>
+                    <div class="skill-progress" data-progress="90">
+                        <div class="skill-progress-fill"></div>
+                    </div>
+                    <span class="skill-percentage">90%</span>
                 </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">JavaScript</h3>
-                <div class="skill-progress" data-progress="85">
-                    <div class="skill-progress-fill"></div>
+                <div class="skill-card">
+                    <h3 class="skill-name">JavaScript</h3>
+                    <div class="skill-progress" data-progress="85">
+                        <div class="skill-progress-fill"></div>
+                    </div>
+                    <span class="skill-percentage">85%</span>
                 </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">Tailwind CSS</h3>
-                <div class="skill-progress" data-progress="95">
-                    <div class="skill-progress-fill"></div>
+                <div class="skill-card">
+                    <h3 class="skill-name">Responsive Design</h3>
+                    <div class="skill-progress" data-progress="95">
+                        <div class="skill-progress-fill"></div>
+                    </div>
+                    <span class="skill-percentage">95%</span>
                 </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">Bootstrap</h3>
-                <div class="skill-progress" data-progress="80">
-                    <div class="skill-progress-fill"></div>
+                <div class="skill-card">
+                    <h3 class="skill-name">CSS Frameworks</h3>
+                    <div class="skill-progress" data-progress="80">
+                        <div class="skill-progress-fill"></div>
+                    </div>
+                    <span class="skill-percentage">80%</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="container mx-auto mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-6 text-center">Projects</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Gallery Project Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 2 Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 3 Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">Experience</h2>
-        <ul class="list-disc list-inside space-y-4">
-            <li>
-                <strong>Masih Kuliah</strong> - Mahasiswa
-            </li>
-     
-        </ul>
-    </section>
-
-    <section id="contact" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">Contact Me</h2>
-        <form id="contact-form" class="space-y-4">
-            <div>
-                <label for="name" class="block text-lg font-semibold mb-2">Name</label>
-                <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200" placeholder="Enter your name">
-            </div>
-        </section>
+ 
 
         <!-- Projects Section -->
-        <section id="projects" aria-labelledby="projects-heading">
+        <section id="projects">
             <div class="container">
-                <h2 id="projects-heading" class="section-title">Projects</h2>
-                <div class="projects-grid">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-grid reveal">
                     <article class="project-card">
                         <picture>
                             <source srcset="img/gallery-project.webp" type="image/webp">
-                            <img src="img/gallery-project.png" 
-                                 alt="Gallery Ku project screenshot showing image gallery interface" 
+                            <img src="img/gallery-project.png"
+                                 alt="Gallery Ku project screenshot showing image gallery interface"
                                  class="project-image"
                                  loading="lazy"
                                  width="800"
                                  height="395">
                         </picture>
-                        <h3 class="project-title">
-                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
-                                Gallery Ku
-                            </a>
-                        </h3>
-                        <p class="project-description">
-                            An interactive image gallery application built with modern web technologies, 
-                            featuring responsive design and smooth animations.
-                        </p>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
+                                    Gallery Ku
+                                </a>
+                            </h3>
+                            <p class="project-description">
+                                An interactive image gallery application built with modern web technologies,
+                                featuring responsive design and smooth animations.
+                            </p>
+                        </div>
                     </article>
                     <article class="project-card">
                         <picture>
                             <source srcset="img/gallery-project.webp" type="image/webp">
-                            <img src="img/gallery-project.png" 
-                                 alt="Gallery Ku project screenshot showing image gallery interface" 
+                            <img src="img/gallery-project.png"
+                                 alt="Gallery Ku project screenshot showing image gallery interface"
                                  class="project-image"
                                  loading="lazy"
                                  width="800"
                                  height="395">
                         </picture>
-                        <h3 class="project-title">
-                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
-                                Gallery Ku
-                            </a>
-                        </h3>
-                        <p class="project-description">
-                            An interactive image gallery application built with modern web technologies, 
-                            featuring responsive design and smooth animations.
-                        </p>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
+                                    Gallery Ku
+                                </a>
+                            </h3>
+                            <p class="project-description">
+                                An interactive image gallery application built with modern web technologies,
+                                featuring responsive design and smooth animations.
+                            </p>
+                        </div>
                     </article>
                     <article class="project-card">
                         <picture>
                             <source srcset="img/gallery-project.webp" type="image/webp">
-                            <img src="img/gallery-project.png" 
-                                 alt="Gallery Ku project screenshot showing image gallery interface" 
+                            <img src="img/gallery-project.png"
+                                 alt="Gallery Ku project screenshot showing image gallery interface"
                                  class="project-image"
                                  loading="lazy"
                                  width="800"
                                  height="395">
                         </picture>
-                        <h3 class="project-title">
-                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
-                                Gallery Ku
-                            </a>
-                        </h3>
-                        <p class="project-description">
-                            An interactive image gallery application built with modern web technologies, 
-                            featuring responsive design and smooth animations.
-                        </p>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
+                                    Gallery Ku
+                                </a>
+                            </h3>
+                            <p class="project-description">
+                                An interactive image gallery application built with modern web technologies,
+                                featuring responsive design and smooth animations.
+                            </p>
+                        </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- Experience Section -->
-        <section id="experience" aria-labelledby="experience-heading">
-            <div class="container">
-                <div class="section-card">
-                    <h2 id="experience-heading" class="section-title">Experience</h2>
-                    <ul class="experience-list">
-                        <li>
-                            <strong>Computer Engineering Student</strong> - Universitas Negeri Makassar<br>
-                            <span class="section-text">Currently pursuing a degree in Computer Engineering, 
-                            focusing on web development and software engineering.</span>
-                        </li>
-                    </ul>
-                </div>
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-card reveal">
+                <h2 class="section-title">Experience</h2>
+                <ul class="experience-list">
+                    <li>
+                        <strong>Computer Engineering Student</strong> - Universitas Negeri Makassar
+                        <span class="section-text">Currently pursuing a degree in Computer Engineering, focusing on web development and software engineering.</span>
+                    </li>
+                </ul>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact" aria-labelledby="contact-heading">
-            <div class="container">
-                <div class="section-card">
-                    <h2 id="contact-heading" class="section-title">Contact Me</h2>
-                    <form class="contact-form" aria-label="Contact form">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Name</label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name" 
-                                class="form-input" 
-                                placeholder="Enter your name"
-                                required
-                                aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email</label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
-                                class="form-input" 
-                                placeholder="Enter your email"
-                                required
-                                aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea 
-                                id="message" 
-                                name="message" 
-                                class="form-textarea" 
-                                placeholder="Your message"
-                                required
-                                aria-required="true"></textarea>
-                        </div>
-                        <button type="submit" class="form-submit">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-card reveal">
+                <h2 class="section-title">Contact Me</h2>
+                <form class="contact-form" aria-label="Contact form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="form-input" 
+                            placeholder="Enter your name"
+                            required
+                            aria-required="true">
+                        <span class="error-message" id="name-error" style="display: none;"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="Enter your email"
+                            required
+                            aria-required="true">
+                        <span class="error-message" id="email-error" style="display: none;"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            class="form-textarea" 
+                            placeholder="Your message"
+                            required
+                            aria-required="true"></textarea>
+                        <span class="error-message" id="message-error" style="display: none;"></span>
+                    </div>
+                    <button type="submit" class="form-submit">
+                        Send Message
+                    </button>
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
     </main>
 
     <!-- Footer -->
@@ -430,6 +409,6 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
