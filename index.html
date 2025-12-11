@@ -3,384 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 1.2s ease-out;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .nav-links {
-            display: flex;
-        }
-
-        #menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        #menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: #1f2937;
-            margin: 3px 0;
-            transition: all 0.3s ease;
-        }
-
-        #menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        #menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        #menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        @media (max-width: 768px) {
-            #menu-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                padding: 0.75rem 0;
-                border-bottom: 1px solid #e5e7eb;
-            }
-
-            .nav-links a:last-child {
-                border-bottom: none;
-            }
-        }
-
-        .project-card {
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-        }
-
-        .project-card img {
-            transition: transform 0.3s ease;
-            transform-style: preserve-3d;
-        }
-
-        .skill-progress {
-            width: 100%;
-            height: 20px;
-            background-color: #e5e7eb;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 0.5rem;
-        }
-
-        .skill-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3b82f6, #2563eb);
-            border-radius: 10px;
-            width: 0;
-            transition: width 0.3s ease;
-        }
-
-        .error-message {
-            color: #ef4444;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-
-        input.error,
-        textarea.error {
-            border-color: #ef4444 !important;
-        }
-
-        input.success,
-        textarea.success {
-            border-color: #10b981 !important;
-        }
-
-        .form-success-alert {
-            background-color: #10b981;
-            color: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            animation: slideInDown 0.3s ease;
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .success-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .success-icon {
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
-        }
-
-        .close-alert {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0 0.5rem;
-        }
-
-        .close-alert:hover {
-            opacity: 0.8;
-        }
-    </style>
+    <meta name="description" content="Portfolio of Ival Permana, Computer Engineering student at Universitas Negeri Makassar. Showcasing web development skills and projects.">
+    <meta name="keywords" content="Ival Permana, Computer Engineering, Web Development, Portfolio, Universitas Negeri Makassar">
+    <meta name="author" content="Ival Permana">
+    <meta name="theme-color" content="#3b82f6">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Ival Permana - Portfolio">
+    <meta property="og:description" content="Computer Engineering student at Universitas Negeri Makassar. Passionate about web development and modern technologies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eval04.github.io/">
+    <meta property="og:image" content="https://eval04.github.io/img/gallery-project.png">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ival Permana - Portfolio">
+    <meta name="twitter:description" content="Computer Engineering student at Universitas Negeri Makassar. Passionate about web development and modern technologies.">
+    <meta name="twitter:image" content="https://eval04.github.io/img/gallery-project.png">
+    
+    <title>Ival Permana - Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💼</text></svg>">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
-    <nav class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-10 relative">
-        <div class="font-bold text-2xl">Portfolio</div>
-        <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <div class="nav-links space-x-4">
-            <a href="#about" class="text-lg font-semibold hover:text-blue-500">About</a>
-            <a href="#skills" class="text-lg font-semibold hover:text-blue-500">Skills</a>
-            <a href="#projects" class="text-lg font-semibold hover:text-blue-500">Projects</a>
-            <a href="#experience" class="text-lg font-semibold hover:text-blue-500">Experience</a>
-            <a href="#contact" class="text-lg font-semibold hover:text-blue-500">Contact</a>
+<body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="#home" aria-label="Home">Ival Permana</a>
+            </div>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
-
-    <header class="text-center py-16 bg-gray-200 overflow-hidden">
-        <div class="hero-content">
-            <h1 class="text-5xl font-bold mb-4 fade-in-up">
-                Hi, I'm Ival Permana
-            </h1>
-            <p class="text-lg text-gray-600 mb-6 fade-in-up">
-                A Student In Universitas Negeri Makassar
-            </p>
-            <a href="#about" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
-                Discover More
-            </a>
-        </div>
-    </header>
-
-    <section id="about" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">About Me</h2>
-        <p class="text-gray-700 text-center">
-            I'm Ival Permana, Seorang Mahasiswa Teknik Komputer Dari Universitas Negeri Makassar Dan Saat Ini Masih Menjalani Program Studi Saya
-        </p>
-    </section>
-
-    <section id="skills" class="container mx-auto mt-8 text-center reveal">
-        <h2 class="text-3xl font-bold mb-4">Skills</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 justify-center">
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">HTML & CSS</h3>
-                <div class="skill-progress" data-progress="90">
-                    <div class="skill-progress-fill"></div>
+    
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Hero Section -->
+        <section id="home" class="hero" aria-labelledby="hero-heading" data-animate="fade-up">
+            <div class="hero-container">
+                <h1 id="hero-heading" class="hero-title">
+                    Hi, I'm <span class="text-highlight">Ival Permana</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Computer Engineering Student at Universitas Negeri Makassar
+                </p>
+                <p class="hero-description">
+                    Passionate about web development, building accessible and performant applications with modern technologies.
+                </p>
+                <div class="hero-cta">
+                    <a href="mailto:ivalpermana004@gmail.com" class="btn btn-primary">
+                        <span class="btn-icon">✉️</span>
+                        Email Me
+                    </a>
+                    <a href="https://github.com/eval04" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                        <span class="btn-icon">🔗</span>
+                        GitHub Profile
+                    </a>
                 </div>
             </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">JavaScript</h3>
-                <div class="skill-progress" data-progress="85">
-                    <div class="skill-progress-fill"></div>
-                </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">Tailwind CSS</h3>
-                <div class="skill-progress" data-progress="95">
-                    <div class="skill-progress-fill"></div>
-                </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">Bootstrap</h3>
-                <div class="skill-progress" data-progress="80">
-                    <div class="skill-progress-fill"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="container mx-auto mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-6 text-center">Projects</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Gallery Project Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 2 Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 3 Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">Experience</h2>
-        <ul class="list-disc list-inside space-y-4">
-            <li>
-                <strong>Masih Kuliah</strong> - Mahasiswa
-            </li>
-     
-        </ul>
-    </section>
-
-    <section id="contact" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">Contact Me</h2>
-        <form id="contact-form" class="space-y-4">
-            <div>
-                <label for="name" class="block text-lg font-semibold mb-2">Name</label>
-                <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200" placeholder="Enter your name">
+            <div class="scroll-indicator" aria-hidden="true">
+                <span>↓</span>
             </div>
         </section>
-
+        
+        <!-- About Section -->
+        <section id="about" class="section" aria-labelledby="about-heading" data-animate="fade-up">
+            <div class="container">
+                <h2 id="about-heading" class="section-title">About Me</h2>
+                <div class="section-content">
+                    <div class="about-content">
+                        <p class="about-text">
+                            I'm Ival Permana, a Computer Engineering student at Universitas Negeri Makassar. 
+                            I'm currently pursuing my degree with a focus on web development and software engineering.
+                        </p>
+                        <p class="about-text">
+                            My journey in technology is driven by a passion for creating user-friendly, accessible, 
+                            and high-performance web applications. I believe in continuous learning and staying up-to-date 
+                            with the latest web technologies and best practices.
+                        </p>
+                        <p class="about-text">
+                            When I'm not coding, I enjoy exploring new technologies, contributing to open-source projects, 
+                            and sharing knowledge with the developer community.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section id="skills" class="section section-alt" aria-labelledby="skills-heading" data-animate="fade-up">
+            <div class="container">
+                <h2 id="skills-heading" class="section-title">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card" data-animate="fade-up">
+                        <div class="skill-icon">🎨</div>
+                        <h3 class="skill-title">HTML & CSS</h3>
+                        <p class="skill-description">
+                            Building semantic, accessible markup and responsive designs with modern CSS techniques.
+                        </p>
+                        <div class="skill-progress" data-progress="90" aria-label="HTML & CSS skill level: 90%">
+                            <div class="skill-progress-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-animate="fade-up">
+                        <div class="skill-icon">⚡</div>
+                        <h3 class="skill-title">JavaScript</h3>
+                        <p class="skill-description">
+                            Creating interactive experiences with vanilla JavaScript and modern ES6+ features.
+                        </p>
+                        <div class="skill-progress" data-progress="85" aria-label="JavaScript skill level: 85%">
+                            <div class="skill-progress-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-animate="fade-up">
+                        <div class="skill-icon">🎯</div>
+                        <h3 class="skill-title">Tailwind CSS</h3>
+                        <p class="skill-description">
+                            Rapid UI development with utility-first CSS framework for modern web applications.
+                        </p>
+                        <div class="skill-progress" data-progress="88" aria-label="Tailwind CSS skill level: 88%">
+                            <div class="skill-progress-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-animate="fade-up">
+                        <div class="skill-icon">📱</div>
+                        <h3 class="skill-title">Bootstrap</h3>
+                        <p class="skill-description">
+                            Building responsive websites with Bootstrap's powerful component library and grid system.
+                        </p>
+                        <div class="skill-progress" data-progress="82" aria-label="Bootstrap skill level: 82%">
+                            <div class="skill-progress-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-animate="fade-up">
+                        <div class="skill-icon">💻</div>
+                        <h3 class="skill-title">Responsive Design</h3>
+                        <p class="skill-description">
+                            Crafting mobile-first designs that work seamlessly across all devices and screen sizes.
+                        </p>
+                        <div class="skill-progress" data-progress="90" aria-label="Responsive Design skill level: 90%">
+                            <div class="skill-progress-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-animate="fade-up">
+                        <div class="skill-icon">♿</div>
+                        <h3 class="skill-title">Accessibility & Performance</h3>
+                        <p class="skill-description">
+                            Ensuring web applications are accessible to all users while maintaining optimal performance.
+                        </p>
+                        <div class="skill-progress" data-progress="87" aria-label="Accessibility & Performance skill level: 87%">
+                            <div class="skill-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <!-- Projects Section -->
-        <section id="projects" aria-labelledby="projects-heading">
+        <section id="projects" class="section" aria-labelledby="projects-heading" data-animate="fade-up">
             <div class="container">
                 <h2 id="projects-heading" class="section-title">Projects</h2>
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <picture>
-                            <source srcset="img/gallery-project.webp" type="image/webp">
-                            <img src="img/gallery-project.png" 
-                                 alt="Gallery Ku project screenshot showing image gallery interface" 
-                                 class="project-image"
-                                 loading="lazy"
-                                 width="800"
-                                 height="395">
-                        </picture>
-                        <h3 class="project-title">
-                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
-                                Gallery Ku
-                            </a>
-                        </h3>
-                        <p class="project-description">
-                            An interactive image gallery application built with modern web technologies, 
-                            featuring responsive design and smooth animations.
+                <div class="projects-empty">
+                    <div class="empty-state" data-animate="fade-up">
+                        <div class="empty-icon">🚀</div>
+                        <h3 class="empty-title">Coming Soon</h3>
+                        <p class="empty-description">
+                            I'm currently working on some exciting projects that will be showcased here soon. 
+                            Stay tuned for updates!
                         </p>
-                    </article>
-                    <article class="project-card">
-                        <picture>
-                            <source srcset="img/gallery-project.webp" type="image/webp">
-                            <img src="img/gallery-project.png" 
-                                 alt="Gallery Ku project screenshot showing image gallery interface" 
-                                 class="project-image"
-                                 loading="lazy"
-                                 width="800"
-                                 height="395">
-                        </picture>
-                        <h3 class="project-title">
-                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
-                                Gallery Ku
-                            </a>
-                        </h3>
-                        <p class="project-description">
-                            An interactive image gallery application built with modern web technologies, 
-                            featuring responsive design and smooth animations.
-                        </p>
-                    </article>
-                    <article class="project-card">
-                        <picture>
-                            <source srcset="img/gallery-project.webp" type="image/webp">
-                            <img src="img/gallery-project.png" 
-                                 alt="Gallery Ku project screenshot showing image gallery interface" 
-                                 class="project-image"
-                                 loading="lazy"
-                                 width="800"
-                                 height="395">
-                        </picture>
-                        <h3 class="project-title">
-                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
-                                Gallery Ku
-                            </a>
-                        </h3>
-                        <p class="project-description">
-                            An interactive image gallery application built with modern web technologies, 
-                            featuring responsive design and smooth animations.
-                        </p>
-                    </article>
+                    </div>
                 </div>
             </div>
         </section>
-
+        
         <!-- Experience Section -->
-        <section id="experience" aria-labelledby="experience-heading">
+        <section id="experience" class="section section-alt" aria-labelledby="experience-heading" data-animate="fade-up">
             <div class="container">
-                <div class="section-card">
-                    <h2 id="experience-heading" class="section-title">Experience</h2>
-                    <ul class="experience-list">
-                        <li>
-                            <strong>Computer Engineering Student</strong> - Universitas Negeri Makassar<br>
-                            <span class="section-text">Currently pursuing a degree in Computer Engineering, 
-                            focusing on web development and software engineering.</span>
-                        </li>
-                    </ul>
+                <h2 id="experience-heading" class="section-title">Experience</h2>
+                <div class="experience-timeline">
+                    <div class="timeline-item" data-animate="fade-up">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Present</div>
+                            <h3 class="timeline-title">Computer Engineering Student</h3>
+                            <h4 class="timeline-subtitle">Universitas Negeri Makassar</h4>
+                            <p class="timeline-description">
+                                Currently pursuing a degree in Computer Engineering with a focus on web development 
+                                and software engineering. Learning modern web technologies, data structures, algorithms, 
+                                and software design patterns while building practical projects.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-
+        
         <!-- Contact Section -->
-        <section id="contact" aria-labelledby="contact-heading">
+        <section id="contact" class="section" aria-labelledby="contact-heading" data-animate="fade-up">
             <div class="container">
-                <div class="section-card">
-                    <h2 id="contact-heading" class="section-title">Contact Me</h2>
+                <h2 id="contact-heading" class="section-title">Get In Touch</h2>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <p class="contact-intro">
+                            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                        </p>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-icon">✉️</span>
+                                <a href="mailto:ivalpermana004@gmail.com" class="contact-link">
+                                    ivalpermana004@gmail.com
+                                </a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">🔗</span>
+                                <a href="https://github.com/eval04" target="_blank" rel="noopener noreferrer" class="contact-link">
+                                    github.com/eval04
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <form class="contact-form" aria-label="Contact form">
                         <div class="form-group">
                             <label for="name" class="form-label">Name</label>
@@ -389,10 +257,12 @@
                                 id="name" 
                                 name="name" 
                                 class="form-input" 
-                                placeholder="Enter your name"
+                                placeholder="Your name"
                                 required
-                                aria-required="true">
+                                aria-required="true"
+                                data-validate="name">
                         </div>
+                        
                         <div class="form-group">
                             <label for="email" class="form-label">Email</label>
                             <input 
@@ -400,21 +270,26 @@
                                 id="email" 
                                 name="email" 
                                 class="form-input" 
-                                placeholder="Enter your email"
+                                placeholder="your.email@example.com"
                                 required
-                                aria-required="true">
+                                aria-required="true"
+                                data-validate="email">
                         </div>
+                        
                         <div class="form-group">
                             <label for="message" class="form-label">Message</label>
                             <textarea 
                                 id="message" 
                                 name="message" 
                                 class="form-textarea" 
-                                placeholder="Your message"
+                                placeholder="Your message..."
+                                rows="5"
                                 required
-                                aria-required="true"></textarea>
+                                aria-required="true"
+                                data-validate="message"></textarea>
                         </div>
-                        <button type="submit" class="form-submit">
+                        
+                        <button type="submit" class="form-submit btn btn-primary">
                             Send Message
                         </button>
                     </form>
@@ -422,14 +297,17 @@
             </div>
         </section>
     </main>
-
+    
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <div class="container">
-            <p class="footer-text">&copy; 2025 Ival Permana. All rights reserved.</p>
+            <p class="footer-text">
+                &copy; 2025 Ival Permana. All rights reserved.
+            </p>
         </div>
     </footer>
-
-    <script src="assets/js/main.js"></script>
+    
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
 </body>
 </html>
