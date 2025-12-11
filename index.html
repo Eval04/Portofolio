@@ -6,37 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#scrollToAbout').on('click', function (e) {
-                e.preventDefault();
-                $('html, body').animate({
-                    scrollTop: $('#about').offset().top
-                }, 1000);
-            });
-
-            $('.project-card').hover(
-                function () {
-                    $(this).find('img').css({
-                        transform: 'scale(1.1)',
-                        transition: 'transform 0.3s ease-in-out'
-                    });
-                },
-                function () {
-                    $(this).find('img').css({
-                        transform: 'scale(1)',
-                        transition: 'transform 0.3s ease-in-out'
-                    });
-                }
-            );
-
-            $('form').on('submit', function (e) {
-                e.preventDefault();
-                alert('Form successfully submitted!');
-            });
-        });
-    </script>
     <style>
         @keyframes fadeInUp {
             from {
@@ -52,12 +21,177 @@
         .fade-in-up {
             animation: fadeInUp 1.2s ease-out;
         }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        #menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        #menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #1f2937;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        #menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        #menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        #menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            #menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .project-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .project-card img {
+            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .skill-progress {
+            width: 100%;
+            height: 20px;
+            background-color: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .skill-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #2563eb);
+            border-radius: 10px;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        input.error,
+        textarea.error {
+            border-color: #ef4444 !important;
+        }
+
+        input.success,
+        textarea.success {
+            border-color: #10b981 !important;
+        }
+
+        .form-success-alert {
+            background-color: #10b981;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            animation: slideInDown 0.3s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .success-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .close-alert {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0 0.5rem;
+        }
+
+        .close-alert:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
-    <nav class="bg-white shadow-md p-4 flex justify-between sticky top-0 z-10">
+    <nav class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-10 relative">
         <div class="font-bold text-2xl">Portfolio</div>
-        <div class="space-x-4">
+        <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links space-x-4">
             <a href="#about" class="text-lg font-semibold hover:text-blue-500">About</a>
             <a href="#skills" class="text-lg font-semibold hover:text-blue-500">Skills</a>
             <a href="#projects" class="text-lg font-semibold hover:text-blue-500">Projects</a>
@@ -66,57 +200,71 @@
         </div>
     </nav>
 
-    <header class="text-center py-16 bg-gray-200">
-        <h1 class="text-5xl font-bold mb-4 fade-in-up">
-            Hi, I’m Ival Permana
-        </h1>
-        <p class="text-lg text-gray-600 mb-6 fade-in-up">
-            A Student In Universitas Negeri Makassar
-        </p>
-        <button id="scrollToAbout" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
-            Discover More
-        </button>
+    <header class="text-center py-16 bg-gray-200 overflow-hidden">
+        <div class="hero-content">
+            <h1 class="text-5xl font-bold mb-4 fade-in-up">
+                Hi, I'm Ival Permana
+            </h1>
+            <p class="text-lg text-gray-600 mb-6 fade-in-up">
+                A Student In Universitas Negeri Makassar
+            </p>
+            <a href="#about" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
+                Discover More
+            </a>
+        </div>
     </header>
 
-    <section id="about" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8">
+    <section id="about" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
         <h2 class="text-3xl font-bold mb-4 text-center">About Me</h2>
         <p class="text-gray-700 text-center">
             I'm Ival Permana, Seorang Mahasiswa Teknik Komputer Dari Universitas Negeri Makassar Dan Saat Ini Masih Menjalani Program Studi Saya
         </p>
     </section>
 
-    <section id="skills" class="container mx-auto mt-8 text-center">
+    <section id="skills" class="container mx-auto mt-8 text-center reveal">
         <h2 class="text-3xl font-bold mb-4">Skills</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 justify-center">
             <div class="bg-white shadow-lg rounded-lg p-6">
                 <h3 class="text-xl font-semibold">HTML & CSS</h3>
+                <div class="skill-progress" data-progress="90">
+                    <div class="skill-progress-fill"></div>
+                </div>
             </div>
             <div class="bg-white shadow-lg rounded-lg p-6">
                 <h3 class="text-xl font-semibold">JavaScript</h3>
+                <div class="skill-progress" data-progress="85">
+                    <div class="skill-progress-fill"></div>
+                </div>
             </div>
             <div class="bg-white shadow-lg rounded-lg p-6">
                 <h3 class="text-xl font-semibold">Tailwind CSS</h3>
+                <div class="skill-progress" data-progress="95">
+                    <div class="skill-progress-fill"></div>
+                </div>
             </div>
             <div class="bg-white shadow-lg rounded-lg p-6">
                 <h3 class="text-xl font-semibold">Bootstrap</h3>
+                <div class="skill-progress" data-progress="80">
+                    <div class="skill-progress-fill"></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="container mx-auto mt-8">
+    <section id="projects" class="container mx-auto mt-8 reveal">
         <h2 class="text-3xl font-bold mb-6 text-center">Projects</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div class="project-card bg-white shadow-lg rounded-lg p-6 transform transition duration-300 hover:scale-110 hover:shadow-xl">
+            <div class="project-card bg-white shadow-lg rounded-lg p-6">
                 <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Gallery Project Screenshot" class="rounded-lg mb-4">
                 <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
                 <p class="text-gray-600">Short description about this project.</p>
             </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6 transform transition duration-300 hover:scale-110 hover:shadow-xl">
+            <div class="project-card bg-white shadow-lg rounded-lg p-6">
                 <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 2 Screenshot" class="rounded-lg mb-4">
                 <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
                 <p class="text-gray-600">Short description about this project.</p>
             </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6 transform transition duration-300 hover:scale-110 hover:shadow-xl">
+            <div class="project-card bg-white shadow-lg rounded-lg p-6">
                 <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 3 Screenshot" class="rounded-lg mb-4">
                 <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
                 <p class="text-gray-600">Short description about this project.</p>
@@ -124,7 +272,7 @@
         </div>
     </section>
 
-    <section id="experience" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8">
+    <section id="experience" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
         <h2 class="text-3xl font-bold mb-4 text-center">Experience</h2>
         <ul class="list-disc list-inside space-y-4">
             <li>
@@ -134,9 +282,9 @@
         </ul>
     </section>
 
-    <section id="contact" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8">
+    <section id="contact" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
         <h2 class="text-3xl font-bold mb-4 text-center">Contact Me</h2>
-        <form class="space-y-4">
+        <form id="contact-form" class="space-y-4">
             <div>
                 <label for="name" class="block text-lg font-semibold mb-2">Name</label>
                 <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200" placeholder="Enter your name">
@@ -160,5 +308,7 @@
     <footer class="bg-gray-200 text-center py-4 mt-8">
         <p class="text-gray-600">&copy; 2025 [Your Name]. All rights reserved.</p>
     </footer>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
