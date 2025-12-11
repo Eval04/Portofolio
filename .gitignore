@@ -1,8 +1,9 @@
-# System Files
+# OS files
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# IDE and Editor Files
+# Editor files
 .vscode/
 .idea/
 *.swp
@@ -13,13 +14,6 @@ Thumbs.db
 *.log
 npm-debug.log*
 
-# Temporary Files
+# Temporary files
 *.tmp
-*.temp
-
-# Node modules (if ever added)
-node_modules/
-
-# Build outputs (if ever added)
-dist/
-build/
+.cache/

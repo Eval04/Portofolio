@@ -1,134 +1,124 @@
-// Mobile Navigation Toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.getElementById('navMenu');
+// Portfolio JavaScript - Vanilla JS
+// Main functionality for interactive features
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all functionality when DOM is ready
+    initNavigation();
+    initSmoothScroll();
+    initContactForm();
+    initProjectCards();
+    initScrollIndicator();
+});
+
+// Navigation functionality
+function initNavigation() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
     
     if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navToggle.classList.toggle('active');
+        navToggle.addEventListener('click', () => {
+            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !isExpanded);
             navMenu.classList.toggle('active');
         });
+    }
+}
 
-        // Close menu when clicking a link
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
+// Smooth scrolling for anchor links
+function initSmoothScroll() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href === '#') return;
+            
+            e.preventDefault();
+            const target = document.querySelector(href);
+            
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// Contact form submission
+function initContactForm() {
+    const form = document.querySelector('.contact-form');
+    
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Placeholder for form submission
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            console.log('Form submitted:', data);
+            alert('Thank you for your message! I will get back to you soon.');
+            
+            form.reset();
         });
     }
+}
 
-    // Smooth Scroll to About Section
-    const scrollToAbout = document.getElementById('scrollToAbout');
-    if (scrollToAbout) {
-        scrollToAbout.addEventListener('click', function(e) {
-            e.preventDefault();
-            const aboutSection = document.getElementById('about');
+// Project card interactions
+function initProjectCards() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        const img = card.querySelector('img');
+        
+        if (img) {
+            card.addEventListener('mouseenter', () => {
+                img.style.transform = 'scale(1.1)';
+                img.style.transition = 'transform 0.3s ease-in-out';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                img.style.transform = 'scale(1)';
+            });
+        }
+    });
+}
+
+// Scroll indicator
+function initScrollIndicator() {
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', () => {
+            const aboutSection = document.querySelector('#about');
             if (aboutSection) {
-                aboutSection.scrollIntoView({ 
+                aboutSection.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
             }
         });
     }
+}
 
-    // Smooth scroll for all navigation links
-    const allNavLinks = document.querySelectorAll('a[href^="#"]');
-    allNavLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href && href !== '#') {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
-    });
-
-    // Project Card Hover Effects
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-        const img = card.querySelector('.project-image');
-        if (img) {
-            card.addEventListener('mouseenter', function() {
-                img.style.transform = 'scale(1.05)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                img.style.transform = 'scale(1)';
-            });
-        }
-    });
-
-    // Contact Form Submission
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Basic validation
-            if (name && email && message) {
-                alert('Form successfully submitted!');
-                contactForm.reset();
-            } else {
-                alert('Please fill in all fields.');
-            }
-        });
-    }
-
-    // Lazy Loading for Images (for browsers that don't support native lazy loading)
-    if ('loading' in HTMLImageElement.prototype) {
-        // Native lazy loading is supported
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        images.forEach(img => {
-            img.src = img.dataset.src || img.src;
-        });
-    } else {
-        // Fallback for browsers that don't support lazy loading
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src || img.src;
-                    img.classList.add('loaded');
-                    observer.unobserve(img);
-                }
-            });
-        });
-
-        images.forEach(img => imageObserver.observe(img));
-    }
-
-    // Add scroll animation to sections
+// Utility: Intersection Observer for animations (placeholder)
+function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-
-    const sectionObserver = new IntersectionObserver((entries) => {
+    
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
+                entry.target.classList.add('animate-in');
             }
         });
     }, observerOptions);
-
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        sectionObserver.observe(section);
-    });
-});
+    
+    // Observe elements (to be implemented with CSS animations)
+    const elements = document.querySelectorAll('section');
+    elements.forEach(el => observer.observe(el));
+}
