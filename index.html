@@ -181,6 +181,17 @@
         .close-alert:hover {
             opacity: 0.8;
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
@@ -214,85 +225,60 @@
         </div>
     </header>
 
-    <section id="about" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">About Me</h2>
-        <p class="text-gray-700 text-center">
-            I'm Ival Permana, Seorang Mahasiswa Teknik Komputer Dari Universitas Negeri Makassar Dan Saat Ini Masih Menjalani Program Studi Saya
-        </p>
-    </section>
-
-    <section id="skills" class="container mx-auto mt-8 text-center reveal">
-        <h2 class="text-3xl font-bold mb-4">Skills</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 justify-center">
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">HTML & CSS</h3>
-                <div class="skill-progress" data-progress="90">
-                    <div class="skill-progress-fill"></div>
+    <main role="main">
+        <!-- About Section -->
+        <section id="about" aria-labelledby="about-heading" class="reveal">
+            <div class="container">
+                <div class="section-card">
+                    <h2 id="about-heading" class="section-title">About Me</h2>
+                    <p class="section-text">
+                        I'm Ival Permana, a Computer Engineering student at Universitas Negeri Makassar. 
+                        I'm passionate about web development and currently pursuing my degree while building 
+                        modern, responsive web applications.
+                    </p>
                 </div>
             </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">JavaScript</h3>
-                <div class="skill-progress" data-progress="85">
-                    <div class="skill-progress-fill"></div>
-                </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">Tailwind CSS</h3>
-                <div class="skill-progress" data-progress="95">
-                    <div class="skill-progress-fill"></div>
-                </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">Bootstrap</h3>
-                <div class="skill-progress" data-progress="80">
-                    <div class="skill-progress-fill"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="projects" class="container mx-auto mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-6 text-center">Projects</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Gallery Project Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 2 Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 3 Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">Experience</h2>
-        <ul class="list-disc list-inside space-y-4">
-            <li>
-                <strong>Masih Kuliah</strong> - Mahasiswa
-            </li>
-     
-        </ul>
-    </section>
-
-    <section id="contact" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">Contact Me</h2>
-        <form id="contact-form" class="space-y-4">
-            <div>
-                <label for="name" class="block text-lg font-semibold mb-2">Name</label>
-                <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200" placeholder="Enter your name">
+        <!-- Skills Section -->
+        <section id="skills" aria-labelledby="skills-heading" class="reveal">
+            <div class="container">
+                <h2 id="skills-heading" class="section-title">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3 class="skill-name">HTML & CSS</h3>
+                        <div class="skill-progress" data-progress="90">
+                            <div class="skill-progress-fill"></div>
+                        </div>
+                        <span class="skill-percentage">90%</span>
+                    </div>
+                    <div class="skill-card">
+                        <h3 class="skill-name">JavaScript</h3>
+                        <div class="skill-progress" data-progress="85">
+                            <div class="skill-progress-fill"></div>
+                        </div>
+                        <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="skill-card">
+                        <h3 class="skill-name">Tailwind CSS</h3>
+                        <div class="skill-progress" data-progress="95">
+                            <div class="skill-progress-fill"></div>
+                        </div>
+                        <span class="skill-percentage">95%</span>
+                    </div>
+                    <div class="skill-card">
+                        <h3 class="skill-name">Bootstrap</h3>
+                        <div class="skill-progress" data-progress="80">
+                            <div class="skill-progress-fill"></div>
+                        </div>
+                        <span class="skill-percentage">80%</span>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" aria-labelledby="projects-heading">
+        <section id="projects" aria-labelledby="projects-heading" class="reveal">
             <div class="container">
                 <h2 id="projects-heading" class="section-title">Projects</h2>
                 <div class="projects-grid">
@@ -361,7 +347,7 @@
         </section>
 
         <!-- Experience Section -->
-        <section id="experience" aria-labelledby="experience-heading">
+        <section id="experience" aria-labelledby="experience-heading" class="reveal">
             <div class="container">
                 <div class="section-card">
                     <h2 id="experience-heading" class="section-title">Experience</h2>
@@ -377,7 +363,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" aria-labelledby="contact-heading">
+        <section id="contact" aria-labelledby="contact-heading" class="reveal">
             <div class="container">
                 <div class="section-card">
                     <h2 id="contact-heading" class="section-title">Contact Me</h2>
@@ -430,6 +416,6 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
