@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Portfolio</title>
+    <meta name="description" content="Ival Permana - Computer Engineering Student Portfolio">
+    <meta name="keywords" content="portfolio, web developer, computer engineering, student">
+    <meta name="author" content="Ival Permana">
+    <title>Ival Permana - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
+        /* Custom animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -33,6 +49,7 @@
             transform: translateY(0);
         }
 
+        /* Mobile Navigation */
         .nav-links {
             display: flex;
         }
@@ -95,16 +112,7 @@
             }
         }
 
-        .project-card {
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-        }
-
-        .project-card img {
-            transition: transform 0.3s ease;
-            transform-style: preserve-3d;
-        }
-
+        /* Skill Progress Bars */
         .skill-progress {
             width: 100%;
             height: 20px;
@@ -122,6 +130,7 @@
             transition: width 0.3s ease;
         }
 
+        /* Form Validation Styles */
         .error-message {
             color: #ef4444;
             font-size: 0.875rem;
@@ -158,17 +167,6 @@
             }
         }
 
-        .success-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .success-icon {
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
-        }
-
         .close-alert {
             background: none;
             border: none;
@@ -184,66 +182,72 @@
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
+    <!-- Navigation -->
     <nav class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-10 relative">
-        <div class="font-bold text-2xl">Portfolio</div>
+        <div class="font-bold text-2xl text-blue-600">Ival Permana</div>
         <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
         </button>
         <div class="nav-links space-x-4">
-            <a href="#about" class="text-lg font-semibold hover:text-blue-500">About</a>
-            <a href="#skills" class="text-lg font-semibold hover:text-blue-500">Skills</a>
-            <a href="#projects" class="text-lg font-semibold hover:text-blue-500">Projects</a>
-            <a href="#experience" class="text-lg font-semibold hover:text-blue-500">Experience</a>
-            <a href="#contact" class="text-lg font-semibold hover:text-blue-500">Contact</a>
+            <a href="#about" class="text-lg font-semibold hover:text-blue-500 transition">About</a>
+            <a href="#skills" class="text-lg font-semibold hover:text-blue-500 transition">Skills</a>
+            <a href="#projects" class="text-lg font-semibold hover:text-blue-500 transition">Projects</a>
+            <a href="#experience" class="text-lg font-semibold hover:text-blue-500 transition">Experience</a>
+            <a href="#contact" class="text-lg font-semibold hover:text-blue-500 transition">Contact</a>
         </div>
     </nav>
 
-    <header class="text-center py-16 bg-gray-200 overflow-hidden">
+    <!-- Hero Section -->
+    <header class="text-center py-20 bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
         <div class="hero-content">
-            <h1 class="text-5xl font-bold mb-4 fade-in-up">
+            <h1 class="text-5xl font-bold mb-4 fade-in-up text-gray-900">
                 Hi, I'm Ival Permana
             </h1>
-            <p class="text-lg text-gray-600 mb-6 fade-in-up">
-                A Student In Universitas Negeri Makassar
+            <p class="text-xl text-gray-600 mb-6 fade-in-up">
+                Computer Engineering Student at Universitas Negeri Makassar
             </p>
-            <a href="#about" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
+            <a href="#about" class="inline-block bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition shadow-lg">
                 Discover More
             </a>
         </div>
     </header>
 
-    <section id="about" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">About Me</h2>
-        <p class="text-gray-700 text-center">
-            I'm Ival Permana, Seorang Mahasiswa Teknik Komputer Dari Universitas Negeri Makassar Dan Saat Ini Masih Menjalani Program Studi Saya
+    <!-- About Section -->
+    <section id="about" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal max-w-4xl">
+        <h2 class="text-4xl font-bold mb-6 text-center text-gray-900">About Me</h2>
+        <p class="text-gray-700 text-lg text-center leading-relaxed">
+            I'm Ival Permana, a Computer Engineering student at Universitas Negeri Makassar. 
+            I'm passionate about web development and creating modern, responsive web applications. 
+            Currently pursuing my degree while building practical skills through hands-on projects.
         </p>
     </section>
 
-    <section id="skills" class="container mx-auto mt-8 text-center reveal">
-        <h2 class="text-3xl font-bold mb-4">Skills</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 justify-center">
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">HTML & CSS</h3>
+    <!-- Skills Section -->
+    <section id="skills" class="container mx-auto mt-12 text-center reveal max-w-6xl">
+        <h2 class="text-4xl font-bold mb-8 text-gray-900">Skills</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition">
+                <h3 class="text-xl font-semibold mb-3">HTML & CSS</h3>
                 <div class="skill-progress" data-progress="90">
                     <div class="skill-progress-fill"></div>
                 </div>
             </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">JavaScript</h3>
+            <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition">
+                <h3 class="text-xl font-semibold mb-3">JavaScript</h3>
                 <div class="skill-progress" data-progress="85">
                     <div class="skill-progress-fill"></div>
                 </div>
             </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">Tailwind CSS</h3>
+            <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition">
+                <h3 class="text-xl font-semibold mb-3">Tailwind CSS</h3>
                 <div class="skill-progress" data-progress="95">
                     <div class="skill-progress-fill"></div>
                 </div>
             </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">Bootstrap</h3>
+            <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition">
+                <h3 class="text-xl font-semibold mb-3">Bootstrap</h3>
                 <div class="skill-progress" data-progress="80">
                     <div class="skill-progress-fill"></div>
                 </div>
@@ -251,185 +255,217 @@
         </div>
     </section>
 
-    <section id="projects" class="container mx-auto mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-6 text-center">Projects</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Gallery Project Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 2 Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 3 Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
+    <!-- Projects Section -->
+    <section id="projects" class="container mx-auto mt-12 reveal max-w-6xl">
+        <h2 class="text-4xl font-bold mb-6 text-center text-gray-900">Projects</h2>
+        <div class="bg-white shadow-lg rounded-lg p-12 text-center">
+            <p class="text-gray-600 text-lg">
+                🚀 Projects section coming soon! Check back later for exciting new projects.
+            </p>
         </div>
     </section>
 
-    <section id="experience" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">Experience</h2>
-        <ul class="list-disc list-inside space-y-4">
-            <li>
-                <strong>Masih Kuliah</strong> - Mahasiswa
+    <!-- Experience Section -->
+    <section id="experience" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-12 reveal max-w-4xl">
+        <h2 class="text-4xl font-bold mb-6 text-center text-gray-900">Experience</h2>
+        <ul class="space-y-4">
+            <li class="border-l-4 border-blue-500 pl-6 py-2">
+                <strong class="text-xl text-gray-900">Computer Engineering Student</strong>
+                <p class="text-gray-600">Universitas Negeri Makassar</p>
+                <p class="text-gray-500 mt-2">
+                    Currently pursuing a degree in Computer Engineering, focusing on web development 
+                    and software engineering. Building practical skills through coursework and personal projects.
+                </p>
             </li>
-     
         </ul>
     </section>
 
-    <section id="contact" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8 reveal">
-        <h2 class="text-3xl font-bold mb-4 text-center">Contact Me</h2>
-        <form id="contact-form" class="space-y-4">
+    <!-- Contact Section -->
+    <section id="contact" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-12 mb-12 reveal max-w-4xl">
+        <h2 class="text-4xl font-bold mb-6 text-center text-gray-900">Contact Me</h2>
+        <form id="contact-form" action="https://formsubmit.co/ivalpermana004@gmail.com" method="POST" class="space-y-4">
+            <!-- FormSubmit Configuration -->
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://eval04.github.io/portfolio/?success=true">
+            <input type="hidden" name="_subject" value="New Portfolio Contact Message">
+            
             <div>
                 <label for="name" class="block text-lg font-semibold mb-2">Name</label>
-                <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200" placeholder="Enter your name">
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" 
+                    placeholder="Enter your name"
+                    required>
             </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" aria-labelledby="projects-heading">
-            <div class="container">
-                <h2 id="projects-heading" class="section-title">Projects</h2>
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <picture>
-                            <source srcset="img/gallery-project.webp" type="image/webp">
-                            <img src="img/gallery-project.png" 
-                                 alt="Gallery Ku project screenshot showing image gallery interface" 
-                                 class="project-image"
-                                 loading="lazy"
-                                 width="800"
-                                 height="395">
-                        </picture>
-                        <h3 class="project-title">
-                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
-                                Gallery Ku
-                            </a>
-                        </h3>
-                        <p class="project-description">
-                            An interactive image gallery application built with modern web technologies, 
-                            featuring responsive design and smooth animations.
-                        </p>
-                    </article>
-                    <article class="project-card">
-                        <picture>
-                            <source srcset="img/gallery-project.webp" type="image/webp">
-                            <img src="img/gallery-project.png" 
-                                 alt="Gallery Ku project screenshot showing image gallery interface" 
-                                 class="project-image"
-                                 loading="lazy"
-                                 width="800"
-                                 height="395">
-                        </picture>
-                        <h3 class="project-title">
-                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
-                                Gallery Ku
-                            </a>
-                        </h3>
-                        <p class="project-description">
-                            An interactive image gallery application built with modern web technologies, 
-                            featuring responsive design and smooth animations.
-                        </p>
-                    </article>
-                    <article class="project-card">
-                        <picture>
-                            <source srcset="img/gallery-project.webp" type="image/webp">
-                            <img src="img/gallery-project.png" 
-                                 alt="Gallery Ku project screenshot showing image gallery interface" 
-                                 class="project-image"
-                                 loading="lazy"
-                                 width="800"
-                                 height="395">
-                        </picture>
-                        <h3 class="project-title">
-                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
-                                Gallery Ku
-                            </a>
-                        </h3>
-                        <p class="project-description">
-                            An interactive image gallery application built with modern web technologies, 
-                            featuring responsive design and smooth animations.
-                        </p>
-                    </article>
-                </div>
+            <div>
+                <label for="email" class="block text-lg font-semibold mb-2">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" 
+                    placeholder="Enter your email"
+                    required>
             </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" aria-labelledby="experience-heading">
-            <div class="container">
-                <div class="section-card">
-                    <h2 id="experience-heading" class="section-title">Experience</h2>
-                    <ul class="experience-list">
-                        <li>
-                            <strong>Computer Engineering Student</strong> - Universitas Negeri Makassar<br>
-                            <span class="section-text">Currently pursuing a degree in Computer Engineering, 
-                            focusing on web development and software engineering.</span>
-                        </li>
-                    </ul>
-                </div>
+            <div>
+                <label for="message" class="block text-lg font-semibold mb-2">Message</label>
+                <textarea 
+                    id="message" 
+                    name="message" 
+                    rows="5" 
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" 
+                    placeholder="Your message"
+                    required></textarea>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" aria-labelledby="contact-heading">
-            <div class="container">
-                <div class="section-card">
-                    <h2 id="contact-heading" class="section-title">Contact Me</h2>
-                    <form class="contact-form" aria-label="Contact form">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Name</label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name" 
-                                class="form-input" 
-                                placeholder="Enter your name"
-                                required
-                                aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email</label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
-                                class="form-input" 
-                                placeholder="Enter your email"
-                                required
-                                aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea 
-                                id="message" 
-                                name="message" 
-                                class="form-textarea" 
-                                placeholder="Your message"
-                                required
-                                aria-required="true"></textarea>
-                        </div>
-                        <button type="submit" class="form-submit">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
+            <button 
+                type="submit" 
+                class="w-full bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition font-semibold shadow-lg">
+                Send Message
+            </button>
+        </form>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <p class="footer-text">&copy; 2025 Ival Permana. All rights reserved.</p>
-        </div>
+    <footer class="bg-gray-800 text-white text-center py-6">
+        <p>&copy; 2025 Ival Permana. All rights reserved.</p>
+        <p class="text-gray-400 text-sm mt-2">
+            <a href="https://github.com/eval04" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition">
+                GitHub: @eval04
+            </a>
+        </p>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                    const isExpanded = navLinks.classList.contains('active');
+                    menuToggle.setAttribute('aria-expanded', isExpanded);
+                });
+                
+                // Close menu when link is clicked
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
+                    const href = anchor.getAttribute('href');
+                    if (href === '#') return;
+                    
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    
+                    if (target) {
+                        const navHeight = document.querySelector('nav').offsetHeight;
+                        const targetPosition = target.offsetTop - navHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Reveal on Scroll
+            const observerOptions = {
+                root: null,
+                threshold: 0.15,
+                rootMargin: '0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Animate Skill Progress Bars
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const targetWidth = bar.getAttribute('data-progress') || '0';
+                        const progressFill = bar.querySelector('.skill-progress-fill');
+                        
+                        if (progressFill) {
+                            setTimeout(() => {
+                                progressFill.style.width = `${targetWidth}%`;
+                            }, 100);
+                        }
+                        
+                        skillObserver.unobserve(bar);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.skill-progress').forEach(bar => {
+                skillObserver.observe(bar);
+            });
+
+            // Parallax Hero Effect
+            const hero = document.querySelector('header');
+            if (hero) {
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    const heroContent = hero.querySelector('.hero-content');
+                    
+                    if (heroContent) {
+                        heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+                        heroContent.style.opacity = Math.max(1 - scrolled / 500, 0);
+                    }
+                });
+            }
+
+            // Check for success message in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    const alert = document.createElement('div');
+                    alert.className = 'form-success-alert mb-4';
+                    alert.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <span>✓ Message sent successfully! I'll get back to you soon.</span>
+                            <button class="close-alert">&times;</button>
+                        </div>
+                    `;
+                    
+                    const form = document.getElementById('contact-form');
+                    form.parentElement.insertBefore(alert, form);
+                    
+                    alert.querySelector('.close-alert').addEventListener('click', () => {
+                        alert.remove();
+                    });
+
+                    // Remove success parameter from URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
