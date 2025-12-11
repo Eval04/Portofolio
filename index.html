@@ -4,161 +4,255 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#scrollToAbout').on('click', function (e) {
-                e.preventDefault();
-                $('html, body').animate({
-                    scrollTop: $('#about').offset().top
-                }, 1000);
-            });
-
-            $('.project-card').hover(
-                function () {
-                    $(this).find('img').css({
-                        transform: 'scale(1.1)',
-                        transition: 'transform 0.3s ease-in-out'
-                    });
-                },
-                function () {
-                    $(this).find('img').css({
-                        transform: 'scale(1)',
-                        transition: 'transform 0.3s ease-in-out'
-                    });
-                }
-            );
-
-            $('form').on('submit', function (e) {
-                e.preventDefault();
-                alert('Form successfully submitted!');
-            });
-        });
-    </script>
-    <style>
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 1.2s ease-out;
-        }
-    </style>
+    
+    <!-- Primary Meta Tags -->
+    <title>Ival Permana - Computer Engineering Student Portfolio</title>
+    <meta name="title" content="Ival Permana - Computer Engineering Student Portfolio">
+    <meta name="description" content="Portfolio of Ival Permana, a Computer Engineering student at Universitas Negeri Makassar. Explore my projects, skills, and experience in web development.">
+    <meta name="keywords" content="Ival Permana, Computer Engineering, Web Development, Portfolio, Universitas Negeri Makassar">
+    <meta name="author" content="Ival Permana">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#3b82f6">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eval04.github.io/">
+    <meta property="og:title" content="Ival Permana - Computer Engineering Student Portfolio">
+    <meta property="og:description" content="Portfolio of Ival Permana, a Computer Engineering student at Universitas Negeri Makassar. Explore my projects, skills, and experience in web development.">
+    <meta property="og:image" content="https://eval04.github.io/img/gallery-project.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://eval04.github.io/">
+    <meta property="twitter:title" content="Ival Permana - Computer Engineering Student Portfolio">
+    <meta property="twitter:description" content="Portfolio of Ival Permana, a Computer Engineering student at Universitas Negeri Makassar. Explore my projects, skills, and experience in web development.">
+    <meta property="twitter:image" content="https://eval04.github.io/img/gallery-project.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
-    <nav class="bg-white shadow-md p-4 flex justify-between sticky top-0 z-10">
-        <div class="font-bold text-2xl">Portfolio</div>
-        <div class="space-x-4">
-            <a href="#about" class="text-lg font-semibold hover:text-blue-500">About</a>
-            <a href="#skills" class="text-lg font-semibold hover:text-blue-500">Skills</a>
-            <a href="#projects" class="text-lg font-semibold hover:text-blue-500">Projects</a>
-            <a href="#experience" class="text-lg font-semibold hover:text-blue-500">Experience</a>
-            <a href="#contact" class="text-lg font-semibold hover:text-blue-500">Contact</a>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-logo">Ival Permana</div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
         </div>
     </nav>
 
-    <header class="text-center py-16 bg-gray-200">
-        <h1 class="text-5xl font-bold mb-4 fade-in-up">
-            Hi, I’m Ival Permana
-        </h1>
-        <p class="text-lg text-gray-600 mb-6 fade-in-up">
-            A Student In Universitas Negeri Makassar
-        </p>
-        <button id="scrollToAbout" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
-            Discover More
-        </button>
-    </header>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <header class="hero" id="home">
+            <div class="container">
+                <h1 class="hero-title">
+                    Hi, I'm Ival Permana
+                </h1>
+                <p class="hero-subtitle">
+                    A Computer Engineering Student at Universitas Negeri Makassar
+                </p>
+                <button id="scrollToAbout" class="hero-cta" aria-label="Scroll to About section">
+                    Discover More
+                </button>
+            </div>
+        </header>
 
-    <section id="about" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8">
-        <h2 class="text-3xl font-bold mb-4 text-center">About Me</h2>
-        <p class="text-gray-700 text-center">
-            I'm Ival Permana, Seorang Mahasiswa Teknik Komputer Dari Universitas Negeri Makassar Dan Saat Ini Masih Menjalani Program Studi Saya
-        </p>
-    </section>
+        <!-- About Section -->
+        <section id="about" aria-labelledby="about-heading">
+            <div class="container">
+                <div class="section-card">
+                    <h2 id="about-heading" class="section-title">About Me</h2>
+                    <p class="section-text">
+                        I'm Ival Permana, a Computer Engineering student at Universitas Negeri Makassar. 
+                        I am passionate about web development and continuously learning new technologies 
+                        to build modern and responsive web applications.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <section id="skills" class="container mx-auto mt-8 text-center">
-        <h2 class="text-3xl font-bold mb-4">Skills</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 justify-center">
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">HTML & CSS</h3>
+        <!-- Skills Section -->
+        <section id="skills" aria-labelledby="skills-heading">
+            <div class="container">
+                <h2 id="skills-heading" class="section-title">Skills</h2>
+                <div class="skills-grid">
+                    <article class="skill-card">
+                        <h3>HTML & CSS</h3>
+                    </article>
+                    <article class="skill-card">
+                        <h3>JavaScript</h3>
+                    </article>
+                    <article class="skill-card">
+                        <h3>Tailwind CSS</h3>
+                    </article>
+                    <article class="skill-card">
+                        <h3>Bootstrap</h3>
+                    </article>
+                    <article class="skill-card">
+                        <h3>Responsive Design</h3>
+                    </article>
+                    <article class="skill-card">
+                        <h3>Web Performance</h3>
+                    </article>
+                </div>
             </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">JavaScript</h3>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">Tailwind CSS</h3>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h3 class="text-xl font-semibold">Bootstrap</h3>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="projects" class="container mx-auto mt-8">
-        <h2 class="text-3xl font-bold mb-6 text-center">Projects</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div class="project-card bg-white shadow-lg rounded-lg p-6 transform transition duration-300 hover:scale-110 hover:shadow-xl">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Gallery Project Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
+        <!-- Projects Section -->
+        <section id="projects" aria-labelledby="projects-heading">
+            <div class="container">
+                <h2 id="projects-heading" class="section-title">Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <picture>
+                            <source srcset="img/gallery-project.webp" type="image/webp">
+                            <img src="img/gallery-project.png" 
+                                 alt="Gallery Ku project screenshot showing image gallery interface" 
+                                 class="project-image"
+                                 loading="lazy"
+                                 width="800"
+                                 height="395">
+                        </picture>
+                        <h3 class="project-title">
+                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
+                                Gallery Ku
+                            </a>
+                        </h3>
+                        <p class="project-description">
+                            An interactive image gallery application built with modern web technologies, 
+                            featuring responsive design and smooth animations.
+                        </p>
+                    </article>
+                    <article class="project-card">
+                        <picture>
+                            <source srcset="img/gallery-project.webp" type="image/webp">
+                            <img src="img/gallery-project.png" 
+                                 alt="Gallery Ku project screenshot showing image gallery interface" 
+                                 class="project-image"
+                                 loading="lazy"
+                                 width="800"
+                                 height="395">
+                        </picture>
+                        <h3 class="project-title">
+                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
+                                Gallery Ku
+                            </a>
+                        </h3>
+                        <p class="project-description">
+                            An interactive image gallery application built with modern web technologies, 
+                            featuring responsive design and smooth animations.
+                        </p>
+                    </article>
+                    <article class="project-card">
+                        <picture>
+                            <source srcset="img/gallery-project.webp" type="image/webp">
+                            <img src="img/gallery-project.png" 
+                                 alt="Gallery Ku project screenshot showing image gallery interface" 
+                                 class="project-image"
+                                 loading="lazy"
+                                 width="800"
+                                 height="395">
+                        </picture>
+                        <h3 class="project-title">
+                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
+                                Gallery Ku
+                            </a>
+                        </h3>
+                        <p class="project-description">
+                            An interactive image gallery application built with modern web technologies, 
+                            featuring responsive design and smooth animations.
+                        </p>
+                    </article>
+                </div>
             </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6 transform transition duration-300 hover:scale-110 hover:shadow-xl">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 2 Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-            <div class="project-card bg-white shadow-lg rounded-lg p-6 transform transition duration-300 hover:scale-110 hover:shadow-xl">
-                <img src="img/Screenshot from 2025-01-01 12-56-00.png" alt="Project 3 Screenshot" class="rounded-lg mb-4">
-                <h3 class="text-xl font-semibold mb-2"><a href="https://eval04.github.io/Galery/" target="_blank">Gallery Ku</a></h3>
-                <p class="text-gray-600">Short description about this project.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="experience" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8">
-        <h2 class="text-3xl font-bold mb-4 text-center">Experience</h2>
-        <ul class="list-disc list-inside space-y-4">
-            <li>
-                <strong>Masih Kuliah</strong> - Mahasiswa
-            </li>
-     
-        </ul>
-    </section>
+        <!-- Experience Section -->
+        <section id="experience" aria-labelledby="experience-heading">
+            <div class="container">
+                <div class="section-card">
+                    <h2 id="experience-heading" class="section-title">Experience</h2>
+                    <ul class="experience-list">
+                        <li>
+                            <strong>Computer Engineering Student</strong> - Universitas Negeri Makassar<br>
+                            <span class="section-text">Currently pursuing a degree in Computer Engineering, 
+                            focusing on web development and software engineering.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <section id="contact" class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-8">
-        <h2 class="text-3xl font-bold mb-4 text-center">Contact Me</h2>
-        <form class="space-y-4">
-            <div>
-                <label for="name" class="block text-lg font-semibold mb-2">Name</label>
-                <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200" placeholder="Enter your name">
+        <!-- Contact Section -->
+        <section id="contact" aria-labelledby="contact-heading">
+            <div class="container">
+                <div class="section-card">
+                    <h2 id="contact-heading" class="section-title">Contact Me</h2>
+                    <form class="contact-form" aria-label="Contact form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                class="form-input" 
+                                placeholder="Enter your name"
+                                required
+                                aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-input" 
+                                placeholder="Enter your email"
+                                required
+                                aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                class="form-textarea" 
+                                placeholder="Your message"
+                                required
+                                aria-required="true"></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
             </div>
-            <div>
-                <label for="email" class="block text-lg font-semibold mb-2">Email</label>
-                <input type="email" id="email" name="email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200" placeholder="Enter your email">
-            </div>
-            <div>
-                <label for="message" class="block text-lg font-semibold mb-2">Message</label>
-                <textarea id="message" name="message" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200" placeholder="Your message"></textarea>
-            </div>
-            <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
-                Send Message
-
-            </button>
-        </form>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-200 text-center py-4 mt-8">
-        <p class="text-gray-600">&copy; 2025 [Your Name]. All rights reserved.</p>
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p class="footer-text">&copy; 2025 Ival Permana. All rights reserved.</p>
+        </div>
     </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
