@@ -289,24 +289,145 @@
                 <label for="name" class="block text-lg font-semibold mb-2">Name</label>
                 <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200" placeholder="Enter your name">
             </div>
-            <div>
-                <label for="email" class="block text-lg font-semibold mb-2">Email</label>
-                <input type="email" id="email" name="email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200" placeholder="Enter your email">
-            </div>
-            <div>
-                <label for="message" class="block text-lg font-semibold mb-2">Message</label>
-                <textarea id="message" name="message" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200" placeholder="Your message"></textarea>
-            </div>
-            <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
-                Send Message
+        </section>
 
-            </button>
-        </form>
-    </section>
+        <!-- Projects Section -->
+        <section id="projects" aria-labelledby="projects-heading">
+            <div class="container">
+                <h2 id="projects-heading" class="section-title">Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <picture>
+                            <source srcset="img/gallery-project.webp" type="image/webp">
+                            <img src="img/gallery-project.png" 
+                                 alt="Gallery Ku project screenshot showing image gallery interface" 
+                                 class="project-image"
+                                 loading="lazy"
+                                 width="800"
+                                 height="395">
+                        </picture>
+                        <h3 class="project-title">
+                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
+                                Gallery Ku
+                            </a>
+                        </h3>
+                        <p class="project-description">
+                            An interactive image gallery application built with modern web technologies, 
+                            featuring responsive design and smooth animations.
+                        </p>
+                    </article>
+                    <article class="project-card">
+                        <picture>
+                            <source srcset="img/gallery-project.webp" type="image/webp">
+                            <img src="img/gallery-project.png" 
+                                 alt="Gallery Ku project screenshot showing image gallery interface" 
+                                 class="project-image"
+                                 loading="lazy"
+                                 width="800"
+                                 height="395">
+                        </picture>
+                        <h3 class="project-title">
+                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
+                                Gallery Ku
+                            </a>
+                        </h3>
+                        <p class="project-description">
+                            An interactive image gallery application built with modern web technologies, 
+                            featuring responsive design and smooth animations.
+                        </p>
+                    </article>
+                    <article class="project-card">
+                        <picture>
+                            <source srcset="img/gallery-project.webp" type="image/webp">
+                            <img src="img/gallery-project.png" 
+                                 alt="Gallery Ku project screenshot showing image gallery interface" 
+                                 class="project-image"
+                                 loading="lazy"
+                                 width="800"
+                                 height="395">
+                        </picture>
+                        <h3 class="project-title">
+                            <a href="https://eval04.github.io/Galery/" target="_blank" rel="noopener noreferrer">
+                                Gallery Ku
+                            </a>
+                        </h3>
+                        <p class="project-description">
+                            An interactive image gallery application built with modern web technologies, 
+                            featuring responsive design and smooth animations.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" aria-labelledby="experience-heading">
+            <div class="container">
+                <div class="section-card">
+                    <h2 id="experience-heading" class="section-title">Experience</h2>
+                    <ul class="experience-list">
+                        <li>
+                            <strong>Computer Engineering Student</strong> - Universitas Negeri Makassar<br>
+                            <span class="section-text">Currently pursuing a degree in Computer Engineering, 
+                            focusing on web development and software engineering.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" aria-labelledby="contact-heading">
+            <div class="container">
+                <div class="section-card">
+                    <h2 id="contact-heading" class="section-title">Contact Me</h2>
+                    <form class="contact-form" aria-label="Contact form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                class="form-input" 
+                                placeholder="Enter your name"
+                                required
+                                aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-input" 
+                                placeholder="Enter your email"
+                                required
+                                aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                class="form-textarea" 
+                                placeholder="Your message"
+                                required
+                                aria-required="true"></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-200 text-center py-4 mt-8">
-        <p class="text-gray-600">&copy; 2025 [Your Name]. All rights reserved.</p>
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p class="footer-text">&copy; 2025 Ival Permana. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="assets/js/main.js"></script>
