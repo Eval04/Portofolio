@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Portofolio — Vals</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        papaya: {
+                            DEFAULT: '#FF7A00',
+                            50: '#FFF1E6',
+                            100: '#FFE6CC',
+                            200: '#FFCC99',
+                            300: '#FFB266',
+                            400: '#FF9933',
+                            500: '#FF7A00',
+                            600: '#E06D00',
+                            700: '#B45A00',
+                            800: '#873F00',
+                            900: '#5A2B00',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Animated gradient backdrop */
+        body {
+            background-image: linear-gradient(120deg, rgba(15,23,42,0.95), rgba(10,12,20,0.95)), 
+                              linear-gradient(90deg, #071029 0%, #0b1020 50%, #071029 100%), 
+                              linear-gradient(135deg, rgba(255,122,0,0.06), rgba(255,186,102,0.02));
+            background-blend-mode: overlay, screen, normal;
+            background-size: 200% 200%, cover, cover;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            @keyframes float { 
+                0%, 100% { transform: translateY(0); } 
+                50% { transform: translateY(-8px); } 
+            }
+            @keyframes fadeUp { 
+                from { opacity: 0; transform: translateY(18px); } 
+                to { opacity: 1; transform: translateY(0); } 
+            }
+            @keyframes pop { 
+                from { opacity: 0; transform: scale(.98) translateY(6px); } 
+                to { opacity: 1; transform: scale(1) translateY(0); } 
+            }
+            @keyframes gradientShift { 
+                0%, 100% { background-position: 0% 50%; } 
+                50% { background-position: 100% 50%; } 
+            }
+
+            .animate-float { animation: float 4s ease-in-out infinite; }
+            .animate-fade-up { animation: fadeUp .6s cubic-bezier(.2,.8,.2,1) forwards; }
+            .animate-pop { animation: pop .45s cubic-bezier(.2,.8,.2,1) forwards; }
+            
+            body.animate-gradient {
+                animation: gradientShift 8s ease infinite;
+            }
+        }
+
+        .glow-on-hover { 
+            transition: box-shadow .18s, transform .18s; 
+            will-change: transform; 
+        }
+        
+        .card-tilt { 
+            transition: transform .18s ease, box-shadow .18s ease; 
+            transform-style: preserve-3d; 
+        }
+        
+        .avatar-tilt { 
+            transition: transform .12s ease; 
+            transform-style: preserve-3d; 
+        }
+
+        [data-animate] { 
+            opacity: 0; 
+            transform-origin: center; 
+        }
+
+        /* Animated underline for nav */
+        .nav-underline { 
+            position: relative; 
+        }
+        
+        .nav-underline::after { 
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            bottom: -6px; 
+            height: 2px; 
+            width: 0; 
+            background: linear-gradient(90deg, #FFB266, #FF7A00); 
+            transition: width .28s ease; 
+            border-radius: 2px; 
+        }
+        
+        .nav-underline:hover::after, 
+        .nav-underline:focus::after { 
+            width: 100%; 
+        }
+
+        /* Progress bar transition */
+        .prog-inner { 
+            transition: width 800ms cubic-bezier(.2,.8,.2,1); 
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans leading-relaxed">
+
+    <!-- Header -->
+    <header class="backdrop-blur-sm bg-black/40 sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 nav-underline" aria-label="Vals — beranda">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-papaya-500 to-yellow-300 flex items-center justify-center font-bold text-black">V</div>
+                <div>
+                    <div class="text-sm font-semibold">Vals</div>
+                    <div class="text-xs text-gray-300">Software · Designer</div>
+                </div>
+            </a>
+            <nav class="hidden md:flex gap-6 items-center text-sm" aria-label="Main navigation">
+                <a href="#work" class="hover:text-papaya-300 transition nav-underline">Proyek</a>
+                <a href="#about" class="hover:text-papaya-300 transition nav-underline">Tentang</a>
+                <a href="#contact" class="hover:text-papaya-300 transition nav-underline">Kontak</a>
+                <a href="#" class="ml-3 inline-block px-4 py-2 rounded-full bg-papaya-500 text-black font-semibold shadow hover:brightness-105 transition">Unduh CV</a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button id="mobileMenuBtn" class="md:hidden text-sm text-gray-300 focus:outline-none focus:ring-2 focus:ring-papaya-400 rounded p-2" aria-label="Toggle menu">
+                Menu
+            </button>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden fixed top-0 right-0 w-64 h-full bg-gray-900 shadow-xl z-50 px-6 py-8">
+            <button id="closeMobileMenu" class="absolute top-4 right-4 text-gray-300 hover:text-white" aria-label="Close menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <nav class="flex flex-col gap-4 mt-8" aria-label="Mobile navigation">
+                <a href="#work" class="hover:text-papaya-300 transition text-lg">Proyek</a>
+                <a href="#about" class="hover:text-papaya-300 transition text-lg">Tentang</a>
+                <a href="#contact" class="hover:text-papaya-300 transition text-lg">Kontak</a>
+                <a href="#" class="mt-4 inline-block px-4 py-2 rounded-full bg-papaya-500 text-black font-semibold shadow hover:brightness-105 transition text-center">Unduh CV</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="max-w-6xl mx-auto px-6 py-14 flex flex-col md:flex-row items-center gap-10">
+        <div class="md:w-1/2">
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+                Hai, saya Vals — pembuat pengalaman digital.
+            </h1>
+            <p class="mt-4 text-gray-300 max-w-xl">
+                Saya mendesain dan membangun antarmuka cepat dan rapi untuk web & aplikasi. Terinspirasi oleh estetika modern, performa, dan detail.
+            </p>
+
+            <div class="mt-6 flex gap-3 flex-wrap">
+                <a href="#work" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-papaya-500 text-black font-semibold shadow hover:brightness-105 transition">
+                    Lihat Proyek
+                </a>
+                <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-gray-700 text-gray-200 hover:border-papaya-400 transition">
+                    Hubungi
+                </a>
+            </div>
+
+            <div class="mt-8 grid grid-cols-3 gap-4 w-full max-w-sm">
+                <div class="bg-gradient-to-br from-papaya-400 to-yellow-200 text-black p-4 rounded-lg">
+                    <div class="text-xs uppercase">Kecepatan</div>
+                    <div class="text-2xl font-bold">98%</div>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg">
+                    <div class="text-xs uppercase text-gray-400">UI/UX</div>
+                    <div class="text-2xl font-bold">50+</div>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg">
+                    <div class="text-xs uppercase text-gray-400">Klien</div>
+                    <div class="text-2xl font-bold">20+</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:w-1/2 flex justify-center md:justify-end">
+            <div class="relative" id="avatarContainer">
+                <img src="" alt="Avatar Vals" class="w-64 h-64 md:w-80 md:h-80 rounded-3xl object-cover shadow-2xl ring-4 ring-black/40" id="avatarImg" />
+                <div class="absolute -bottom-4 left-4 bg-black/60 px-3 py-2 rounded-full text-sm text-gray-200 flex items-center gap-2">
+                    <svg class="w-4 h-4 text-papaya-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Developer & Designer
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work / Projects -->
+    <section id="work" class="bg-gradient-to-b from-black/60 to-black/40 py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-2xl font-bold mb-6">Proyek Terpilih</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <article class="bg-gray-800 rounded-xl overflow-hidden shadow-lg card-tilt glow-on-hover">
+                    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=60" class="w-full h-40 object-cover" alt="Screenshot aplikasi lomba virtual">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Aplikasi Lomba Virtual</h3>
+                        <p class="text-sm text-gray-400 mt-2">Desain antarmuka kompetisi online yang responsif dan cepat.</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <div class="text-xs text-gray-400">React · Tailwind · Vercel</div>
+                            <a href="#" class="text-papaya-300 text-sm font-semibold hover:underline">Lihat</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="bg-gradient-to-br from-papaya-700/10 to-black rounded-xl overflow-hidden shadow-lg border border-gray-800 card-tilt glow-on-hover">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=60" class="w-full h-40 object-cover" alt="Screenshot dashboard performa">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Dashboard Performa</h3>
+                        <p class="text-sm text-gray-400 mt-2">Dashboard data realtime dengan fokus performa & wawasan.</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <div class="text-xs text-gray-400">Next.js · D3 · Supabase</div>
+                            <a href="#" class="text-papaya-300 text-sm font-semibold hover:underline">Lihat</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="bg-gray-800 rounded-xl overflow-hidden shadow-lg card-tilt glow-on-hover">
+                    <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=60" class="w-full h-40 object-cover" alt="Screenshot landing page produk">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Landing Page Produk</h3>
+                        <p class="text-sm text-gray-400 mt-2">Landing page performa tinggi fokus konversi.</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <div class="text-xs text-gray-400">HTML · Tailwind · Lighthouse</div>
+                            <a href="#" class="text-papaya-300 text-sm font-semibold hover:underline">Lihat</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h2 class="text-2xl font-bold">Tentang Saya</h2>
+                <p class="mt-4 text-gray-300">Saya fokus membuat produk digital yang terasa ringan, cepat, dan mudah digunakan. Background di pengembangan web, desain antarmuka, dan optimasi performa. Saya suka bereksperimen dengan tipografi, warna kontras, dan micro-interaction.</p>
+
+                <ul class="mt-6 grid grid-cols-2 gap-3 text-sm text-gray-300">
+                    <li class="flex items-center gap-2"><span class="inline-block w-2 h-2 bg-papaya-500 rounded-full"></span> Frontend</li>
+                    <li class="flex items-center gap-2"><span class="inline-block w-2 h-2 bg-papaya-500 rounded-full"></span> UI/UX</li>
+                    <li class="flex items-center gap-2"><span class="inline-block w-2 h-2 bg-papaya-500 rounded-full"></span> Performance</li>
+                    <li class="flex items-center gap-2"><span class="inline-block w-2 h-2 bg-papaya-500 rounded-full"></span> Accessibility</li>
+                </ul>
+
+                <div class="mt-6">
+                    <a href="#" class="px-4 py-2 bg-transparent border border-gray-700 rounded-full text-sm hover:border-papaya-400 inline-block transition">Lihat Resume</a>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-gray-800/60 to-black/40 p-6 rounded-xl">
+                <h3 class="font-semibold">Keahlian Teknis</h3>
+                <div class="mt-4 space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs text-gray-400"><span>HTML & CSS</span><span>95%</span></div>
+                        <div class="w-full bg-gray-700 h-2 rounded-full mt-2" data-progress="95"><div class="h-2 rounded-full bg-papaya-500 prog-inner" style="width:0%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs text-gray-400"><span>JavaScript</span><span>90%</span></div>
+                        <div class="w-full bg-gray-700 h-2 rounded-full mt-2" data-progress="90"><div class="h-2 rounded-full bg-papaya-500 prog-inner" style="width:0%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs text-gray-400"><span>Design Systems</span><span>80%</span></div>
+                        <div class="w-full bg-gray-700 h-2 rounded-full mt-2" data-progress="80"><div class="h-2 rounded-full bg-papaya-500 prog-inner" style="width:0%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="bg-black/60 py-16">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-gradient-to-br from-gray-800/60 to-black p-8 rounded-xl">
+                <h2 class="text-2xl font-bold">Hubungi Saya</h2>
+                <p class="text-gray-300 mt-2">Ada proyek atau kolaborasi? Kirim pesan singkat.</p>
+
+                <form id="contactForm" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4" aria-label="Form kontak">
+                    <input type="text" name="name" placeholder="Nama" required class="p-3 rounded-md bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-papaya-400 outline-none transition" />
+                    <input type="email" name="email" placeholder="Email" required class="p-3 rounded-md bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-papaya-400 outline-none transition" />
+                    <input type="text" name="company" placeholder="Perusahaan / Proyek" class="p-3 rounded-md bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-papaya-400 outline-none md:col-span-2 transition" />
+                    <textarea name="message" placeholder="Pesan singkat" rows="4" required class="p-3 rounded-md bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-papaya-400 outline-none md:col-span-2 transition"></textarea>
+                    <div class="md:col-span-2 flex justify-end">
+                        <button type="submit" class="px-6 py-3 rounded-full bg-papaya-500 text-black font-semibold hover:brightness-105 transition">Kirim</button>
+                    </div>
+                </form>
+
+                <div class="mt-6 text-sm text-gray-400">
+                    Atau kirim email langsung ke <a href="mailto:hello@vals.dev" class="text-papaya-300 hover:underline">hello@vals.dev</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-400">
+            <div>&copy; 2025 Vals. Semua hak cipta.</div>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-papaya-300 transition" aria-label="Twitter">Twitter</a>
+                <a href="#" class="hover:text-papaya-300 transition" aria-label="Instagram">Instagram</a>
+                <a href="#" class="hover:text-papaya-300 transition" aria-label="GitHub">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check for reduced motion preference
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMenu);
+        closeMobileMenu.addEventListener('click', closeMenu);
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.12,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    
+                    if (!prefersReduced) {
+                        element.classList.add('animate-fade-up');
+                    }
+                    element.style.opacity = '1';
+
+                    // Animate progress bars
+                    const progressBars = element.querySelectorAll('[data-progress]');
+                    progressBars.forEach(bar => {
+                        const value = bar.dataset.progress;
+                        const inner = bar.querySelector('.prog-inner');
+                        if (inner) {
+                            setTimeout(() => {
+                                inner.style.width = value + '%';
+                            }, 100);
+                        }
+                    });
+
+                    observer.unobserve(element);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and main elements
+        document.querySelectorAll('section, article, header, footer').forEach(el => {
+            el.dataset.animate = 'fade';
+            observer.observe(el);
+        });
+
+        // Card tilt effect
+        if (!prefersReduced) {
+            document.querySelectorAll('article').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    const rotateX = -y * 5;
+                    const rotateY = x * 5;
+                    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+                    card.style.boxShadow = '0 18px 40px rgba(2,6,23,0.55)';
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.boxShadow = '';
+                });
+            });
+
+            // Avatar effects
+            const avatarImg = document.getElementById('avatarImg');
+            const avatarContainer = document.getElementById('avatarContainer');
+            
+            if (avatarImg) {
+                avatarImg.classList.add('animate-float');
+            }
+
+            if (avatarContainer) {
+                avatarContainer.addEventListener('mousemove', (e) => {
+                    const rect = avatarContainer.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    const rotateX = -y * 4;
+                    const rotateY = x * 4;
+                    avatarContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                avatarContainer.addEventListener('mouseleave', () => {
+                    avatarContainer.style.transform = '';
+                });
+            }
+
+            // Add gradient animation to body
+            document.body.classList.add('animate-gradient');
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah diterima.');
+            contactForm.reset();
+        });
+    </script>
+
+</body>
+</html>
